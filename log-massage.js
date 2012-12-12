@@ -102,6 +102,11 @@ LogMassage.prototype.toDate = function() {
 	var i, ii, len, lenn, x, fields;
 	for (i = 0, len = this.data.length; i<len; i++) {
 		x = this.data[i];
+		// Just reassign he value if only one param passed
+		if(arguments.length === 1){
+			this.data[i] = new Date(x);
+			continue;
+		};
 		fields = [];
 		for (ii = 0, lenn = arguments.length; ii<lenn; ii++) {
 			fields.push(x[arguments[ii]]);
@@ -112,6 +117,59 @@ LogMassage.prototype.toDate = function() {
 			new Date(fields.join(""))
 		);
 	};
+	return this;
+};
+
+LogMassage.prototype.toNumber = function( /* cells */) {
+	var i, ii, len, lenn, x;
+	for (i = 0, len = this.data.length; i<len; i++) {
+		x = this.data[i];
+		for (ii = 0, lenn = arguments.length; ii<lenn; ii++) {
+			x[arguments[ii]] = Number(x[arguments[ii]]);
+		};
+	};
+	return this;
+};
+
+LogMassage.prototype.filterBetween = function(a, b, pos) {
+	// consume retunred different values to behave differently
+	// true keep, false remove
+};
+
+LogMassage.prototype.filterBetween = function(a, b, pos) {
+	var i, len, x, val;
+	var dataType = typeof a;
+	var keep = false;
+	var results = [];
+
+	if(dataType === "object"){
+		if(dataType instanceof Date) dataType = "date";
+	};
+
+	function betweenCompare(){
+		return ( a <= val && b => val );
+	};
+
+	for (i = 0, len = this.data.length; i<len; i++) {
+		x = this.data[i];
+		val = x[pos];
+		switch(dataType){
+			case "date" :
+				a = a.getTime();
+				b = b.getTime();
+				if(!val instanceof Date) val = new Date(val).getTime();
+				keep = betweenCompare.call(this, a, b, val);
+				break;
+			case "number" :
+				val = Number(val);
+				keep = betweenCompare.call(this, a, b, val);
+				break;
+			default :
+				keep = betweenCompare.call(this, a, b, val);
+		};
+		if(keep) results.push(x);
+	};
+	this.data = results;
 	return this;
 };
 
