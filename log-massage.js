@@ -98,7 +98,7 @@ LogMassage.prototype.eachCellByPosition = function(pos, eachFunction, context) {
 	return this;
 };
 
-LogMassage.prototype.toDate = function() {
+LogMassage.prototype.toDate = function(/* 1, 2, 3 cells */) {
 	var i, ii, len, lenn, x, fields;
 	for (i = 0, len = this.data.length; i<len; i++) {
 		x = this.data[i];
@@ -120,7 +120,7 @@ LogMassage.prototype.toDate = function() {
 	return this;
 };
 
-LogMassage.prototype.toNumber = function( /* cells */) {
+LogMassage.prototype.toNumber = function(/* 1, 2, 3 cells */) {
 	var i, ii, len, lenn, x;
 	for (i = 0, len = this.data.length; i<len; i++) {
 		x = this.data[i];
@@ -132,11 +132,7 @@ LogMassage.prototype.toNumber = function( /* cells */) {
 };
 
 LogMassage.prototype.filterBetween = function(a, b, pos) {
-	// consume retunred different values to behave differently
-	// true keep, false remove
-};
-
-LogMassage.prototype.filterBetween = function(a, b, pos) {
+	/* A is the low value and B is the high. Pos is the cell to evaluate */
 	var i, len, x, val;
 	var dataType = typeof a;
 	var keep = false;
@@ -147,7 +143,7 @@ LogMassage.prototype.filterBetween = function(a, b, pos) {
 	};
 
 	function betweenCompare(){
-		return ( a <= val && b => val );
+		return ( a <= val && b >= val );
 	};
 
 	for (i = 0, len = this.data.length; i<len; i++) {
