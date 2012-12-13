@@ -17,6 +17,7 @@ function LogMassage(){
 			case "string" :
 				this.stringData = arguments[0].toString();
 				this.toArrays(this.stringData);
+				break;
 			case "object" :
 				/* Config */
 				if(arguments[0].data != null) this.data = arguments[0].data;
@@ -71,10 +72,13 @@ LogMassage.prototype.removeCell = function(rowNum, startCell, endCell){
 };
 
 LogMassage.prototype.eachRow = function(eachFunction, context) {
-	var i, len, x;
+	var i, len, x, resultsArray = [], keep;
 	for (i = 0, len = this.data.length; i<len; i++) {
-		eachFunction.call(context || this, i, this.data[i]);
+		x = this.data[i];
+		keep = eachFunction.call(context || this, i, x);
+		if(keep) resultsArray.push(x)
 	};
+	this.data = resultsArray;
 	return this;
 };
 

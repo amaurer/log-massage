@@ -6,15 +6,21 @@ var logFilePath = "X:\\JRun4\\servers\\OEMLR_Sean\\cfusion.ear\\cfusion.war\\WEB
 
 fs.readFile(logFilePath, function(e, data){
 
+	var count = 0;
 	var lm = new LogMassage(data)
 		.toDate(2, 3)
 		.removeRowCells(1, 4)
 		.filterBetween(
-			new Date("12/03/12").getTime(),
-			new Date("12/04/12").getTime(),
+			new Date("12/03/12"),
+			new Date("12/04/12"),
 			2
-		);
+		)
+		.eachRow(function(rowIndex, row){
+			count++;
+			return true;
+		});
 
-	console.log(lm);
+	//console.log(lm);
+	console.log(count);
 
 });
