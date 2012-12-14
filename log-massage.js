@@ -28,18 +28,23 @@ function LogMassage(){
 	};
 };
 
+LogMassage.prototype.fixFunkiness = function(stringData){
+	return stringData.replace(/\",,\"/g, "\",\"\",\"").replace(/\",,,\"/g, "\",\"\",\"\",\"");
+};
+
 LogMassage.prototype.toArrays = function(stringData){
 	if(typeof stringData !== "string") return this;
 
 	var i, ii, len, lenn, x, tmp;
 	var logResults = [];
-	var rows = stringData.toString().split(this.rowDelimiter);
+	var normalizedString = this.fixFunkiness(stringData.toString());
+	var rows = normalizedString.split(this.rowDelimiter);
 	var cells = [];
 	var replaceQuotes = /"/g;
 	var replaceCarriageReturns = /\r/g;
 	for (i = 1, len = rows.length; i<len; i++) {
 		x = rows[i];
-		if(x === "" || x.length === 0) continue;
+		if(x === "" || x.length === 0 || x.substr(0,1) !== "\"") continue;
 		cells = x.split(this.cellDelimiter);
 		tmp = [];
 		for (ii = 0, lenn = cells.length; ii<lenn; ii++) {
