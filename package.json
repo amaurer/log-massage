@@ -1,5 +1,5 @@
 {
-	"name" : "Andrew Maurer",
+	"name" : "LogMassage",
 	"author" : "Andrew Maurer <andrew@maurer.me>",
 	"description" : "A collection of methods that alter log data.",
 	"dependencies" : {
