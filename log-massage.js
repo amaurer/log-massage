@@ -35,6 +35,8 @@ LogMassage.prototype.toArrays = function(stringData){
 	var logResults = [];
 	var rows = stringData.toString().split(this.rowDelimiter);
 	var cells = [];
+	var replaceQuotes = /"/g;
+	var replaceCarriageReturns = /\r/g;
 	for (i = 1, len = rows.length; i<len; i++) {
 		x = rows[i];
 		if(x === "" || x.length === 0) continue;
@@ -42,7 +44,7 @@ LogMassage.prototype.toArrays = function(stringData){
 		tmp = [];
 		for (ii = 0, lenn = cells.length; ii<lenn; ii++) {
 			tmp.push(
-				cells[ii].replace(/"/g, "").replace(/\r/g, "")
+				cells[ii].replace(replaceQuotes, "").replace(replaceCarriageReturns, "")
 			);
 		};
 		logResults.push(tmp);
