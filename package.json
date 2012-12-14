@@ -1,0 +1,9 @@
+{
+	"name" : "Andrew Maurer",
+	"author" : "Andrew Maurer <andrew@maurer.me>",
+	"description" : "A collection of methods that alter log data.",
+	"dependencies" : {
+		//"async" : "0.1.22"
+	},
+	"engine" : "0.8.14"
+}
