@@ -1,9 +1,14 @@
 {
-	"author" : "Andrew Maurer <andrew@maurer.me>",
-	"name" : "log-massage",
-	"version" : "0.0.1",
-	"description" : "A collection of methods that alter log data.",
-	"dependencies" : {
-	},
-	"engine" : "0.8.14"
+	 "name" : "log-massage"
+	,"author" : "Andrew Maurer <andrew@maurer.me>"
+	,"description" : "A collection of methods that alter log data."
+	,"version" : "0.1.1"
+	,"main" : "./log-massage.js"
+	, "repository" : {
+		 "type" : "git"
+		,"url" : "https://github.com/amaurer/log-massage.git"
+	}
+	,"dependencies" : {
+	}
+	,"engine" : "0.8.14"
 }
