@@ -1,6 +1,7 @@
 {
-	"name" : "LogMassage",
 	"author" : "Andrew Maurer <andrew@maurer.me>",
+	"name" : "log-massage",
+	"version" : "0.0.1",
 	"description" : "A collection of methods that alter log data.",
 	"dependencies" : {
 	},
